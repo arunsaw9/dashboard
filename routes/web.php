@@ -24,5 +24,7 @@ Route::get('/dashboard', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/index', 'RegularworkforceController@index');
-Route::get('/show', 'RegularworkforceController@show');
+
+
+Route::get('/save', 'KpiController@index');
+Route::get('/open', 'KpiController@show');
