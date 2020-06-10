@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShowsTable extends Migration
+class CreateKpisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateShowsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shows', function (Blueprint $table) {
+        Schema::create('kpis', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('show_name');
-            $table->string('genre');
-            $table->float('imdb_rating');
-            $table->string('lead_actor');
+            $table->string('name');
+            $table->string('month');
+            $table->year('year');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateShowsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shows');
+        Schema::dropIfExists('kpis');
     }
 }

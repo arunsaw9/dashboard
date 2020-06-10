@@ -27,6 +27,7 @@
                           </div>
                           <div class="card-content">
                               <div class="card-body">
+                                @include('includes.messages')
                                   <form class="form form-horizontal" action="{{ route('kpis.store') }}" method="post">
                                     @csrf
                                       <div class="form-body">

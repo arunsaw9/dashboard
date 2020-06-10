@@ -41,7 +41,7 @@ return [
             'port'     => 27017,
             'username' => '',
             'password' => '',
-            'database' => 'ongc-dashboard',
+            'database' => 'ongc_hr-dashboard',
             'options' => array(
                 'db' => 'admin' // sets the authentication database required by mongo 3
             )

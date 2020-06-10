@@ -20,7 +20,7 @@
               <div class="col-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="mb-0">Dispatched Orders</h4>
+                    <h4 class="mb-0">Kpi Information</h4>
                     <h4 class="mb-0"><a href="{{ route('kpis.create') }}" class="btn btn-primary mr-1 mb-1">Create</a></h4>
                   </div>
                   <div class="card-content">
@@ -43,7 +43,7 @@
                             <td><i class="fa fa-circle font-small-3 text-success mr-50"></i>{{$list->name}}</td>
                             <td>{{ $list->month }}</td>
                             <td>{{ $list->year }}</td>
-                            <td><a href="{{ route('kpis.edit',$list->_id) }}" class="btn  btn-outline-primary mr-1"><span class="glyphicon glyphicon-edit"></span>Edit</a></td>
+                            <td><a href="{{ route('kpis.edit',$list->_id) }}" class="btn btn-outline-primary mr-1"><i class="ficon feather icon-edit-2"></i></a></td>
                             <td>
                               <form id="delete-form-{{ $list->_id }}" method="post" action="{{ route('kpis.destroy',$list->_id) }}" style="display: none">
                                 {{ csrf_field() }}
@@ -57,7 +57,7 @@
                                   }
                                   else{
                                     event.preventDefault();
-                                  }" ><span class="glyphicon glyphicon-trash"></span>Delete</a>
+                                  }" ><i class="ficon feather icon-trash"></i></a>
                             </td>
                           </tr>
                           @endforeach

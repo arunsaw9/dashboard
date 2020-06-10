@@ -1,44 +1,28 @@
 <?php 
 
-echo "<pre>";
-print_r($RW->toArray());
-//echo $RW[0]['name'];
+//echo "<pre>";
+//print_r($RW->toArray());
 
-//print_r($RW[0]['officers']);
-//echo $RW[0]['officers']['actual'];
+$rw_data_array = [];
+$totalvalue = 0;
 
-$return = [];
 foreach ($RW->toArray() as $key => $value) {
-	echo $key ."<br>";
     foreach ($value as $innerKey => $innerValue) {
-    	if ($innerKey == 'officers') {
-    		# code...
+    	if ($innerKey == 'officers' OR $innerKey == 'staff' OR $innerKey == 'contractors') {
+    		foreach ($innerValue as $datakey => $datavalue) {
+    			$rw_data_array[$innerKey] = $datavalue;
+    			$totalvalue += $datavalue;
+
+    		}
     	}
-        $return[] = $innerValue;
     }
 }
-echo '<pre>';
-print_r($return);
-
-die();
-
-echo "<pre>";
-print_r($RW->toArray());
-//echo $RW[0]['name'];
-
-//print_r($RW[0]['officers']);
-//echo $RW[0]['officers']['actual'];
-
-$return = [];
-foreach ($RW->toArray() as $key => $value) {
-	echo $key ."<br>";
-    foreach ($value as $innerKey => $innerValue) {
-        echo $innerKey ."<br>";
-    }
-}
-
-
-die();
+//echo '<pre>';
+//print_r($rw_data_array);
+//print_r($return);
+//echo $rw_json = json_encode($rw_data_array);
+//echo "<script> var rw_json = ".json_encode($rw_data_array)." </script>";
+//die();
 
 
 ?>
@@ -53,30 +37,31 @@ die();
 @endsection
 
 <style>
-.box1 {
-  background-color: lightgrey;
-  width: 150px;
-  border: 5px solid green;
-  padding: 6px;
-  margin: 6px;
-  text-align: center;
+	.box1 {
+	  background-color: lightgrey;
+	  width: 150px;
+	  border: 5px solid green;
+	  padding: 6px;
+	  margin: 6px;
+	  text-align: center;
 
-  -moz-box-shadow:    inset 0 0 10px #000000;
-    -webkit-box-shadow: inset 0 0 10px #000000;
-    box-shadow:         inset 0 0 4px #000000;
-}
-.cardbox{margin-bottom: 0.2rem !important;    width: 76%;}
-.otherp{
-    border: 1px solid #ccc;
-    width: 160px;
-    text-align: center;
-    padding: 3px 0;
-    box-shadow: -10px 10px 5px rgba(0,0,0,0.6);
-    -moz-box-shadow: -10px 10px 5px rgba(0,0,0,0.6);
-    -webkit-box-shadow: -5px 5px 1px rgba(0,0,0,0.6);
-    -o-box-shadow: -10px 10px 5px rgba(0,0,0,0.6);
-}
+	  -moz-box-shadow:    inset 0 0 10px #000000;
+	    -webkit-box-shadow: inset 0 0 10px #000000;
+	    box-shadow:         inset 0 0 4px #000000;
+	}
+	.cardbox{margin-bottom: 0.2rem !important;    width: 76%;}
+	.otherp{
+	    border: 1px solid #ccc;
+	    width: 160px;
+	    text-align: center;
+	    padding: 3px 0;
+	    box-shadow: -10px 10px 5px rgba(0,0,0,0.6);
+	    -moz-box-shadow: -10px 10px 5px rgba(0,0,0,0.6);
+	    -webkit-box-shadow: -5px 5px 1px rgba(0,0,0,0.6);
+	    -o-box-shadow: -10px 10px 5px rgba(0,0,0,0.6);
+	}
 </style>
+
 
 @section('content')
 
@@ -96,8 +81,12 @@ die();
 	        	
 	            <div class="col-lg-3 col-md-6 col-12" >
 	              <div class="card" style="">
-					<h4 style="margin: 10px 0 0 15px;">{{ $RW[0]['name'] }}</h4>
-	                <div id="donutchart" style=" padding-left: 15px;"></div>
+					<h4 style="text-align: center; margin-top: 8px;">{{ $RW[0]['name'] }}</h4>
+					<div class="donut-wrapper">
+						<div id="donutchart" style=" padding-left: 10px;"></div>
+						<div class="inner-content">{{ $totalvalue}}</div>
+				    </div>
+	                
 	              </div>
 	            </div>
 
@@ -299,24 +288,31 @@ die();
 @section('footerSection')
 <script src="{{ asset('app-assets/vendors/js/charts/apexcharts.min.js') }}"></script>
 <script src="{{ asset('app-assets/js/scripts/charts/chart-apex.min.js')}}"></script>
-<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="{{ asset('app-assets/js/scripts/charts/loader.js')}}"></script>
+
 <script type="text/javascript">
+
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
+        
         var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['1',     11],
-          ['2',      2],
-          ['3', 2],
-          ['4',    7]
-        ]);
+              ['Language', 'Rating'],
+              <?php
+	              if(is_array($rw_data_array)){
+	              	foreach ($rw_data_array as $key => $value) {
+	              		echo "['".$key."', ".$value."],";
+	              	}
+	              }
+              ?>
+            ]);
+
 
         var options = {
           title: 'My Daily Activities',
           height: 200,
           width: 200,
-          pieHole: 0.4,
+          pieHole: 0.5,
           showLables: 'true',
           pieSliceText: 'value',
           pieSliceTextStyle: {
@@ -324,14 +320,14 @@ die();
               fontSize:14
           },
           legend: {
-              position: 'right',
+              position: 'bottom',
               alignment: 'center'
           },
           chartArea: { 
               left: 0, 
               top: 10, 
               width: '130%', 
-              height: '65%'
+              height: '80%'
           },
           tooltip: {
               trigger: true
@@ -341,5 +337,21 @@ die();
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
         chart.draw(data, options);
       }
-    </script>
+</script>
+<style>
+      .inner-content {
+        position: absolute;
+        top: 53%;
+        left: 50%;
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
+        margin-left: -50px;
+        font-size: 16px;
+        line-height: 100px;
+        vertical-align: middle;
+        text-align: center;
+        color: #000;
+      }
+</style>
 @endsection

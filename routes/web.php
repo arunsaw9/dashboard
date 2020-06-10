@@ -27,4 +27,3 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::resource('/kpis', 'KpiController');
-//Route::get('/open', 'KpiController@show');

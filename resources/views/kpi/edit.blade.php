@@ -28,9 +28,9 @@
                               <h4 class="card-title">Update Information</h4>
                           </div>
                           
-
                           <div class="card-content">
                               <div class="card-body">
+                                @include('includes.messages')
                                   <form class="form form-horizontal" action="{{ route('kpis.update', $editkpis->_id) }}" method="post">
                                     @csrf
                                     {{ method_field('PUT') }}
@@ -133,10 +133,10 @@
      <?php } else if($editkpis->name == 'CSR Target Achievement') { ?>
       <div id="inputFormRow">
           <div class="input-group " style="margin: 10px 0;">
-              <input type="text" name="title2[staff][actual]" class="form-control m-input" value="{{ $editkpis->achievement['actual']  }}" placeholder="actual" autocomplete="off">
+              <input type="text" name="achievement[actual]" class="form-control m-input" value="{{ $editkpis->achievement['actual']  }}" placeholder="actual" autocomplete="off">
           </div>
            <div class="input-group " style="margin: 10px 0;">
-              <input type="text" name="title2[staff][actual]" class="form-control m-input" value="{{ $editkpis->achievement['target']  }}" placeholder="target" autocomplete="off">
+              <input type="text" name="achievement[target]" class="form-control m-input" value="{{ $editkpis->achievement['target']  }}" placeholder="target" autocomplete="off">
           </div>
       </div>
     <?php } else { ?>
