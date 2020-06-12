@@ -17,8 +17,17 @@ foreach ($RW->toArray() as $key => $value) {
     	}
     }
 }
-//echo '<pre>';
-//print_r($rw_data_array);
+
+//------------------------------------------------------------
+$RetirementsData =json_decode($Retirements);
+$removedArray = array_shift($RetirementsData);
+$arrayData = json_decode(json_encode($removedArray), true);
+unset($arrayData["_id"]);
+//-------------------------------------------------------------
+$HTA = $HTA->toArray();
+$HTA_array = array_shift($HTA);
+//-------------------------------------------------------------
+//print_r(  array_shift($HTA) );
 //print_r($return);
 //echo $rw_json = json_encode($rw_data_array);
 //echo "<script> var rw_json = ".json_encode($rw_data_array)." </script>";
@@ -63,6 +72,45 @@ foreach ($RW->toArray() as $key => $value) {
 </style>
 
 
+<style>
+	.verticalChart {
+	  width: 100%;
+	}
+	.verticalChart .singleBar {
+	  width: 26%;
+	  float: left;
+	  margin-left: 15.5%;
+	}
+	.verticalChart .singleBar .bar {
+	  position: relative;
+	  height: 170px;
+	  background: #bbb;
+	  overflow: hidden;
+	}
+	.verticalChart .singleBar .bar .value {
+	  position: absolute;
+	  bottom: 0;
+	  width: 60%;
+      margin-left: 18%;
+	  background: #1C2833;
+	  color: #ffffff;
+	}
+	.verticalChart .singleBar .bar .value span {
+	  position: absolute;
+	  font-size: 12px;
+	  bottom: 0;
+	  width: 100%;
+	  height: 20px;
+	  color: #ffffff;
+	  display: none;
+	  text-align: center;
+	}
+	.verticalChart .singleBar .title {
+	  margin-top: 5px;
+	  text-align: center;
+	  color: #fff;
+	}
+</style>
 @section('content')
 
 
@@ -91,38 +139,40 @@ foreach ($RW->toArray() as $key => $value) {
 	            </div>
 
 	            <div class="col-lg-3 col-md-6 col-12">
-	              <div class="card cardbox">
-	              	<div class="box1">Retirements 
-						<strong>148</strong>
-	              	</div>
-	              </div>
-	              <div class="card cardbox">
-	              	<div class="box1">Attrition 
-						<strong>1.2 %</strong>
-	              	</div>
-	              </div>
-
-	              <div class="card cardbox">
-	              	<div class="box1">Average Age
-						<strong>43.3</strong>
-	              	</div>
-	              </div>
-	              
-	              <div class="card cardbox">
-	              	<div class="box1">Women
-						<strong>7.2 %</strong>
-	              	</div>
-	              </div>
+	            		@foreach($arrayData as $innerkey => $innervalue)
+	            			<div class="card cardbox">
+				              	<div class="box1">{{ $innerkey }} 
+									<strong>{{ $innervalue }}</strong>
+				              	</div>
+				            </div>
+	            		@endforeach
 	            </div>
 
 	            <div class="col-lg-3 col-md-6 col-12">
 	              <div class="card">
-	                <div class="card-header d-flex flex-column align-items-start pb-0">
 	                    
-	                    <h4 class="text-bold-700 mt-1 mb-25">Hiring Target Achievement</h4>
-	                    <p class="mb-0">Subscribers Gained</p>
-	                </div>
-	                <p></p>
+	                    <h4 class="text-bold-700 mt-1 mb-25" style="margin-left: 15%;" >Hiring Target Achievement</h4>
+	                    <div class="verticalChart">
+
+	                      <div class="singleBar">
+	                        <div class="bar">
+	                          <div class="value" style="height: 37%;">
+	                            <span style=" display: inline;">{{  $HTA_array['Execcutive']['Execcutive'] }}</span>
+	                          </div>
+	                        </div>
+	                      </div>
+
+	                      <div class="singleBar">
+	                        <div class="bar">
+	                          <div class="value" style="height: 50%;">
+	                            <span style=" display: inline;">{{  $HTA_array['staff']['staff'] }}</span>
+	                          </div>
+	                        </div>
+	                      </div>
+	                      <div class="clearfix"></div>
+
+	                    </div>
+					
 	              </div>
 	            </div>
 

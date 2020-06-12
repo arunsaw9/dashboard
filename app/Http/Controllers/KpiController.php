@@ -20,8 +20,6 @@ class KpiController extends Controller
 
     public function index()
     {
-        //$RW = kpi::where('name', 'Regular Workforce')->get();
-        //return view('kpi.index', compact('RW'));
         $lists = Kpi::all();
         return view('kpi.list', compact('lists'));
     }
@@ -44,91 +42,115 @@ class KpiController extends Controller
      */
     public function store(Request $request)
     {
+        //return $request->all();
         $this->validate($request,[
-            'name' =>'required',
             'month' =>'required',
             'year' =>'required',
         ]);
 
         $save = new kpi;
-        $save->name = $request->name;
+        $save->name = $request->data_value;
         $save->month = $request->month;
         $save->year = $request->year;
 
         $data_value = $request->data_value;
 
-        if(isset($request->rwf)){
+        if($request->data_value == 'Regular Workforce'){
 
             $this->validate(
                 $request, 
                 [   
-                    'rwf.officers.actual' => 'required',
-                    'rwf.staff.actual' => 'required',
-                    'rwf.contractors.actual' => 'required',
+                    'rwf_officers_actual' => 'required',
+                    'rwf_staff_actual' => 'required',
+                    'rwf_contractors_actual' => 'required',
                 ],
                 [   
-                    "rwf.officers.actual.required" => 'officers field is required',
-                    "rwf.staff.actual.required" => 'staff field is required',
-                    "rwf.contractors.actual.required" => 'contractors field is required',
+                    "rwf_officers_actual.required" => 'officers field is required',
+                    "rwf_staff_actual.required" => 'staff field is required',
+                    "rwf_contractors_actual.required" => 'contractors field is required',
                 ]
             );
 
-            $save->officers = (object)(str_replace('"', '', $request->rwf['officers']));
-            $save->staff = (object)(str_replace('"', '', $request->rwf['staff']));
-            $save->contractors = (object)(str_replace('"', '', $request->rwf['contractors']));
+            $save->officers =  [
+                'actual' => $request->rwf_officers_actual,
+                //'planned' => $request->rwf_officers_planned
+            ];
+            $save->staff =  [
+                'actual'=>$request->rwf_staff_actual
+            ];
+            $save->contractors =  [
+                'actual' => $request->rwf_contractors_actual
+            ];
         }
             
-         if(isset($request->HTA)){
+         if($request->data_value =='Hiring Target Achievement'){
             $this->validate(
                 $request, 
                 [   
-                    'HTA.Execcutive' => 'required',
-                    'HTA.staff' => 'required',
+                    'HTA_Execcutive' => 'required',
+                    'HTA_staff' => 'required',
                 ],
                 [   
-                    "HTA.Execcutive.required" => 'Execcutive field of Hiring Target Achievement is required',
-                    "HTA.staff.required" => 'Staff field of Hiring Target Achievement is required',
+                    "HTA_Execcutive.required" => 'Execcutive field of Hiring Target Achievement is required',
+                    "HTA_staff.required" => 'Staff field of Hiring Target Achievement is required',
                 ]
             );
 
-            $save->data_value = $request->HTA;
+            $save->Execcutive = [
+                'Execcutive' => $request->HTA_Execcutive
+            ];
+            $save->staff = [
+                'staff' => $request->HTA_staff
+            ];
          }
             
-         if(isset($request->achievement)){
+         if($request->data_value == 'CSR Target Achievement'){
             $this->validate(
                 $request, 
                 [   
-                    'achievement.actual' => 'required',
-                    'achievement.target' => 'required',
+                    'achievement_actual' => 'required',
+                    'achievement_target' => 'required',
                 ],
                 [   
-                    "achievement.actual.required" => 'Actual field of CSR Target Achievement is required',
-                    "achievement.target.required" => 'Target field of CSR Target Achievement is required',
+                    "achievement_actual.required" => 'Actual field of CSR Target Achievement is required',
+                    "achievement_target.required" => 'Target field of CSR Target Achievement is required',
                 ]
             );
-            $save->data_value = $request->achievement;
+            $save->CSR_achievement_actual =  [
+                'actual' => $request->achievement_actual
+            ];
+            $save->CSR_achievement_target =  [
+                'target' => $request->achievement_target
+            ];
          }
            
-        if(isset($request->TraningDays)){
+        if($request->data_value == 'Training'){
             $this->validate(
                 $request, 
                 [   
-                    'TraningDays.actual' => 'required',
-                    'TraningDays.target' => 'required',
-                    'Participants.actual' => 'required',
-                    'Participants.target' => 'required',
+                    'TraningDays_actual' => 'required',
+                    'TraningDays_target' => 'required',
+                    'Participants_actual' => 'required',
+                    'Participants_target' => 'required',
                 ],
                 [   
-                    "TraningDays.actual.required" => 'Actual field of Traning Days is required',
-                    "TraningDays.target.required" => 'Target field of Traning Days is required',
-                    "Participants.actual.required" => 'Actual field of Participants is required',
-                    "Participants.target.required" => 'Target field of Participants is required',
+                    "TraningDays_actual.required" => 'Actual field of Traning Days is required',
+                    "TraningDays_target.required" => 'Target field of Traning Days is required',
+                    "Participants_actual.required" => 'Actual field of Participants is required',
+                    "Participants_target.required" => 'Target field of Participants is required',
                 ]
             );
-            $save->TraningDays = $request->TraningDays;
-            $save->Participants = $request->Participants;
+            $save->TraningDays =  [
+                'actual' => $request->TraningDays_actual,
+                'target' => $request->TraningDays_target
+            ];
+            $save->Participants =  [
+                'actual' => $request->Participants_actual,
+                'target' => $request->Participants_target
+            ];
         }
 
+        //return $save;
         $save->save();
         return redirect()->route('kpis.index');
     }
@@ -170,92 +192,112 @@ class KpiController extends Controller
         //return $request->all();
 
         $this->validate($request,[
-            'name' =>'required',
             'month' =>'required',
             'year' =>'required',
         ]);
 
-        $update = Kpi::find($id);
-        $update->name = $request->name;
-        $update->month = $request->month;
-        $update->year = $request->year;
+        $editeddata = kpi::find($id);
+        $editeddata->name = $request->name;
+        $editeddata->month = $request->month;
+        $editeddata->year = $request->year;
 
-        $data_value = $request->data_value;
+        if($request->name == 'Regular Workforce'){
 
-        if(isset($request->rwf)){
             $this->validate(
                 $request, 
                 [   
-                    'rwf.officers.actual' => 'required',
-                    'rwf.staff.actual' => 'required',
-                    'rwf.contractors.actual' => 'required',
+                    'rwf_officers_actual' => 'required',
+                    'rwf_staff_actual' => 'required',
+                    'rwf_contractors_actual' => 'required',
                 ],
                 [   
-                    "rwf.officers.actual.required" => 'officers field is required',
-                    "rwf.staff.actual.required" => 'staff field is required',
-                    "rwf.contractors.actual.required" => 'contractors field is required',
+                    "rwf_officers_actual.required" => 'officers field is required',
+                    "rwf_staff_actual.required" => 'staff field is required',
+                    "rwf_contractors_actual.required" => 'contractors field is required',
                 ]
             );
-            $update->officers = (object)(str_replace('"', '', $request->rwf['officers']));
-            $update->staff = (object)(str_replace('"', '', $request->rwf['staff']));
-            $update->contractors = (object)(str_replace('"', '', $request->rwf['contractors']));
+
+            $editeddata->officers =  [
+                'actual' => $request->rwf_officers_actual,
+                //'planned' => $request->rwf_officers_planned
+            ];
+            $editeddata->staff =  [
+                'actual'=>$request->rwf_staff_actual
+            ];
+            $editeddata->contractors =  [
+                'actual' => $request->rwf_contractors_actual
+            ];
         }
-            
-         if(isset($request->HTA)){
+       
 
-            $this->validate(
-                $request, 
-                [   
-                    'Execcutive' => 'required', 
-                    'staff' => 'required',
-                ],
-                [   
-                    "Execcutive.required" => 'Execcutive field of Hiring Target Achievement is required',
-                    "staff.required" => 'Staff field of Hiring Target Achievement is required',
-                ]
-            );
-            $update->Execcutive = $request->Execcutive;
-            $update->staff = $request->staff;
-         }
-            
-         if(isset($request->achievement)){
-            $this->validate(
-                $request, 
-                [   
-                    'achievement.actual' => 'required',
-                    'achievement.target' => 'required',
-                ],
-                [   
-                    "achievement.actual.required" => 'Actual field of CSR Target Achievement is required',
-                    "achievement.target.required" => 'Target field of CSR Target Achievement is required',
-                ]
-            );
-            $update->achievement = (object)$request->achievement;
-         }
-           
-        if(isset($request->Traning)){
+        if($request->name =='Hiring Target Achievement'){
+           $this->validate(
+               $request, 
+               [   
+                   'HTA_Execcutive' => 'required',
+                   'HTA_staff' => 'required',
+               ],
+               [   
+                   "HTA_Execcutive.required" => 'Execcutive field of Hiring Target Achievement is required',
+                   "HTA_staff.required" => 'Staff field of Hiring Target Achievement is required',
+               ]
+           );
 
-            $this->validate(
-                $request, 
-                [   
-                    'TraningDays.actual' => 'required',
-                    'TraningDays.target' => 'required',
-                    'Participants.actual' => 'required',
-                    'Participants.target' => 'required',
-                ],
-                [   
-                    "TraningDays.actual.required" => 'Actual field of Traning Days is required',
-                    "TraningDays.target.required" => 'Target field of Traning Days is required',
-                    "Participants.actual.required" => 'Actual field of Participants is required',
-                    "Participants.target.required" => 'Target field of Participants is required',
-                ]
-            );
-            
-            $update->TraningDays = (object)$request->TraningDays;
-            $update->Participants = (object)$request->Participants;
+            $editeddata->HTA_Execcutive = ['Execcutive' => $request->HTA_Execcutive];
+            $editeddata->HTA_staff = ['staff' => $request->HTA_staff];
         }
-        $update->save();
-        return redirect()->route('kpis.index');
+
+        if($request->name == 'CSR Target Achievement'){
+           $this->validate(
+               $request, 
+               [   
+                   'achievement_actual' => 'required',
+                   'achievement_target' => 'required',
+               ],
+               [   
+                   "achievement_actual.required" => 'Actual field of CSR Target Achievement is required',
+                   "achievement_target.required" => 'Target field of CSR Target Achievement is required',
+               ]
+           );
+
+           $editeddata->CSR_achievement_actual =  [
+               'actual' => $request->achievement_actual
+           ];
+           $editeddata->CSR_achievement_target =  [
+               'target' => $request->achievement_target
+           ];
+        }
+
+        if($request->name == 'Training'){
+            $this->validate(
+                $request, 
+                [   
+                    'TraningDays_actual' => 'required',
+                    'TraningDays_target' => 'required',
+                    'Participants_actual' => 'required',
+                    'Participants_target' => 'required',
+                ],
+                [   
+                    "TraningDays_actual.required" => 'Actual field of Traning Days is required',
+                    "TraningDays_target.required" => 'Target field of Traning Days is required',
+                    "Participants_actual.required" => 'Actual field of Participants is required',
+                    "Participants_target.required" => 'Target field of Participants is required',
+                ]
+            );
+            $editeddata->TraningDays = [
+                'actual' => $request->TraningDays_actual,
+                'target' => $request->TraningDays_target
+            ];
+            $editeddata->Participants = [
+                'actual' => $request->Participants_actual,
+                'target' => $request->Participants_target
+            ];
+        }
+
+         $editeddata->save();
+         return redirect()->route('kpis.index');
+
+       
     }
 
     /**

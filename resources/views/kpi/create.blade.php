@@ -32,7 +32,7 @@
                                     @csrf
                                       <div class="form-body">
                                           <div class="row">
-                                              <div class=" col-12">
+                                              {{-- <div class=" col-12">
                                                   <div class="form-group row">
                                                       <div class="col-md-4">
                                                       <span>Name</span>
@@ -46,7 +46,26 @@
                                                       </div>
                                                       </div>
                                                   </div>
-                                              </div>
+                                              </div> --}}
+                                              <div class="col-12">
+                                                  <div class="form-group row">
+                                                      <div class="col-md-4">
+                                                          <span>Namme</span>
+                                                        </div> 
+                                                      <div class="col-md-8">
+                                                          <div class="position-relative has-icon-left">
+                                                                <select name="data_value" class="select2 form-control">
+                                                                    <option >Please Select One</option>
+                                                                    <option value="Regular Workforce">Regular Workforce</option>
+                                                                    <option value="Hiring Target Achievement">Hiring Target Achievement</option>
+                                                                    <option value="CSR Target Achievement">CSR Target Achievement</option>
+                                                                    <option value="Training">Training</option>
+                                                                </select>
+                                                            </div>
+                                                            <div id="newRow"></div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
                                               <div class="col-12">
                                                   <div class="form-group row">
                                                       <div class="col-md-4">
@@ -54,7 +73,7 @@
                                                         </div>
                                                       <div class="col-md-8">
                                                           <div class="position-relative has-icon-left">
-                                                            <select id="year" class="select2 form-control" name="month">
+                                                            <select id="year" class="form-control" name="month">
                                                                 <option value=''>--Select Month--</option>
                                                                   <option selected value='Janaury'>Janaury</option>
                                                                   <option value='February'>February</option>
@@ -83,7 +102,7 @@
                                                         </div>
                                                       <div class="col-md-8">
                                                           <div class="position-relative has-icon-left">
-                                                            <select id="year" class="select2 form-control" name="year">
+                                                            <select id="year" class=" form-control" name="year">
                                                                 <?php 
                                                                     for ($year = 2020; $year < 2025 ; $year++) { 
                                                                         echo '<option value="'.$year.'">'.$year.'</option>';
@@ -97,26 +116,9 @@
                                                       </div>
                                                   </div>
                                               </div>
-                                              <div class="col-12">
-                                                  <div class="form-group row">
-                                                      <div class="col-md-4">
-                                                          <span>Input</span>
-                                                        </div> 
-                                                      <div class="col-md-8">
-                                                          <div class="position-relative has-icon-left">
-                                                                <select name="data_value" class="select2 form-control">
-                                                                    <option >Please Select One</option>
-                                                                    <option value="RW">Regular Workforce</option>
-                                                                    <option value="HTA">Hiring Target Achievement</option>
-                                                                    <option value="CSR">CSR Target Achievement</option>
-                                                                    <option value="TR">Training</option>
-                                                                </select>
-                                                            </div>
-                                                            <div id="newRow"></div>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div><!-- 
+                                              
+                                              </div>
+                                              <!-- 
                                               <div class="form-group col-md-8 offset-md-4">
                                                   <fieldset class="checkbox">
                                                     <div class="vs-checkbox-con vs-checkbox-primary">

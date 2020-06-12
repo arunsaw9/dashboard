@@ -1,5 +1,4 @@
-
-
+<?php //print_r($editkpis->toArray());   die; ?>
 @extends('layouts.myapp')
 
 <style>
@@ -108,35 +107,36 @@
                                                           <span>Input</span>
                                                         </div> 
                                                       <div class="col-md-8">
+                                                        
     <?php if ($editkpis->name == 'Regular Workforce') { ?>
       <div id="inputFormRow">
           <div class="input-group " style="margin: 10px 0;">
-              <input type="text" name="rwf[officers][actual]" class="form-control m-input" value="{{ $editkpis->officers['actual'] }}" placeholder="officers" autocomplete="off">
+              <input type="text" name="rwf_officers_actual" class="form-control m-input" value="{{ $editkpis['officers']['actual'] }}" placeholder="officers" autocomplete="off">
           </div>
           <div class="input-group " style="margin: 10px 0;">
-              <input type="text" name="rwf[staff][actual]" class="form-control m-input" value="{{ $editkpis->staff['actual']  }}" placeholder="staff" autocomplete="off">
+              <input type="text" name="rwf_staff_actual" class="form-control m-input" value="{{ $editkpis['staff']['actual']  }}" placeholder="staff" autocomplete="off">
           </div>
           <div class="input-group " style="margin: 10px 0;">
-              <input type="text" name="rwf[contractors][actual]" class="form-control m-input" value="{{ $editkpis->contractors['actual']  }}" placeholder="contractors" autocomplete="off">
+              <input type="text" name="rwf_contractors_actual" class="form-control m-input" value="{{ $editkpis->contractors['actual']  }}" placeholder="contractors" autocomplete="off">
           </div>
       </div>
     <?php } else if($editkpis->name == 'Hiring Target Achievement') { ?>
     <div id="inputFormRow">
         <input type="hidden" id="custId" name="HTA" value="HTA">
         <div class="input-group " style="margin: 10px 0;">
-            <input type="text" name="Execcutive" class="form-control m-input" value="{{ $editkpis->Execcutive  }}" placeholder="Execcutive" autocomplete="off">
+            <input type="text" name="HTA_Execcutive" class="form-control m-input" value="{{ $editkpis['Execcutive']['Execcutive']  }}" placeholder="Execcutive" autocomplete="off">
         </div>
         <div class="input-group " style="margin: 10px 0;">
-            <input type="text" name="staff" class="form-control m-input" value="{{ $editkpis->staff }}" placeholder="Staff" autocomplete="off">
+            <input type="text" name="HTA_staff" class="form-control m-input" value="{{ $editkpis['staff']['staff'] }}" placeholder="Staff" autocomplete="off">
         </div>
     </div>
      <?php } else if($editkpis->name == 'CSR Target Achievement') { ?>
       <div id="inputFormRow">
           <div class="input-group " style="margin: 10px 0;">
-              <input type="text" name="achievement[actual]" class="form-control m-input" value="{{ $editkpis->achievement['actual']  }}" placeholder="actual" autocomplete="off">
+              <input type="text" name="achievement_actual" class="form-control m-input" value="{{ $editkpis['CSR_achievement_actual']['actual']  }}" placeholder="actual" autocomplete="off">
           </div>
            <div class="input-group " style="margin: 10px 0;">
-              <input type="text" name="achievement[target]" class="form-control m-input" value="{{ $editkpis->achievement['target']  }}" placeholder="target" autocomplete="off">
+              <input type="text" name="achievement_target" class="form-control m-input" value="{{ $editkpis['CSR_achievement_target']['target']  }}" placeholder="target" autocomplete="off">
           </div>
       </div>
     <?php } else { ?>
@@ -144,18 +144,18 @@
           <p style="margin-top: 12px;"> Traning Days </p>
           <input type="hidden" id="custId" name="Traning" value="Traning">
           <div class="input-group " style="margin: 10px 0;">
-              <input type="text" name="TraningDays[actual]" class="form-control m-input" value="{{$editkpis->TraningDays['actual']  }}" placeholder="actual" autocomplete="off">
+              <input type="text" name="TraningDays_actual" class="form-control m-input" value="{{$editkpis['TraningDays']['actual']  }}" placeholder="actual" autocomplete="off">
           </div>
            <div class="input-group " style="margin: 10px 0;">
-              <input type="text" name="TraningDays[target]" class="form-control m-input" value="{{ $editkpis->TraningDays['target']  }}" placeholder="target" autocomplete="off">
+              <input type="text" name="TraningDays_target" class="form-control m-input" value="{{ $editkpis['TraningDays']['target']  }}" placeholder="target" autocomplete="off">
           </div>
 
           <p> Participants </p>
           <div class="input-group " style="margin: 10px 0;">
-              <input type="text" name="Participants[actual]" class="form-control m-input" value="{{ $editkpis->Participants['actual']  }}" placeholder="actual" autocomplete="off">
+              <input type="text" name="Participants_actual" class="form-control m-input" value="{{ $editkpis['Participants']['actual']  }}" placeholder="actual" autocomplete="off">
           </div>
            <div class="input-group " style="margin: 10px 0;">
-              <input type="text" name="Participants[target]" class="form-control m-input" value="{{ $editkpis->Participants['target']  }}" placeholder="target" autocomplete="off">
+              <input type="text" name="Participants_target" class="form-control m-input" value="{{ $editkpis['Participants']['target']  }}" placeholder="target" autocomplete="off">
           </div>
       </div>
     <?php } ?>

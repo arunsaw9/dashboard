@@ -62,7 +62,8 @@
         <div class="card bg-authentication rounded-0 mb-0">
             <div class="row m-0">
                 <div class="col-lg-6 d-lg-block d-none text-center align-self-center px-1 py-0">
-                    <img src="{{ asset('app-assets/images/pages/login.png') }}" alt="branding logo">
+                    {{-- <img src="{{ asset('app-assets/images/pages/login.png') }}" alt="branding logo"> --}}
+                    <img src="https://www.freshersnow.com/wp-content/uploads/2019/01/ONGC-Admit-Card-2019.jpg" alt="branding logo">
                 </div>
                 <div class="col-lg-6 col-12 p-0">
                     <div class="card rounded-0 mb-0 px-2">
@@ -74,7 +75,6 @@
                         <p class="px-2">Welcome back, please login to your account.</p>
                         <div class="card-content">
                             <div class="card-body pt-1">
-
 
                                 <form method="POST" action="{{ route('login') }}">
                                      @csrf
@@ -109,7 +109,7 @@
 
                                     <div class="form-group d-flex justify-content-between align-items-center">
                                         <div class="text-left">
-                                            <fieldset class="checkbox">
+                                            {{-- <fieldset class="checkbox">
                                               <div class="vs-checkbox-con vs-checkbox-primary">
                                                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -119,15 +119,15 @@
 
                                               
                                               </div>
-                                            </fieldset>
+                                            </fieldset> --}}
                                         </div>
-                                        <div class="text-right"><a href="auth-forgot-password.html" class="card-link">\
+                                        {{-- <div class="text-right"><a href="auth-forgot-password.html" class="card-link">\
                                             @if (Route::has('password.request'))
                                                 <a class="btn btn-link" href="{{ route('password.request') }}">
                                                     {{ __('Forgot Your Password?') }}
                                                 </a>
                                             @endif
-                                        </a></div>
+                                        </a></div> --}}
                                     </div>
                                     <a href="auth-register.html" class="btn btn-outline-primary float-left btn-inline">Register</a>
                                     <button type="submit" class="btn btn-primary float-right btn-inline">
@@ -135,8 +135,8 @@
                                     
                                 </form>
                             </div>
-                        </div>
-                        <div class="login-footer">
+                        </div><br>
+                        {{-- <div class="login-footer">
                           <div class="divider">
                             <div class="divider-text">OR</div>
                           </div>
@@ -146,7 +146,7 @@
                               <a href="#" class="btn btn-google"><span class="fa fa-google"></span></a>
                               <a href="#" class="btn btn-github"><span class="fa fa-github-alt"></span></a>
                           </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
