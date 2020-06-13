@@ -16,17 +16,18 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', function () {
-        return view('welcome');
-   });
-    Route::resource('/kpis', 'KpiController');
-    Route::get('/dashboard', 'DashboardController@index');
+
+	Route::resource('/kpis', 'KpiController');
+	Route::get('/', 'DashboardController@index');
+
+    //Route::get('/', function () { return view('welcome'); });
+    //Route::get('/home', 'HomeController@index')->name('home');
 });
 
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
 
 
 

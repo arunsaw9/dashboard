@@ -83,7 +83,7 @@ $HTA_array = array_shift($HTA);
 	}
 	.verticalChart .singleBar .bar {
 	  position: relative;
-	  height: 170px;
+	  height: 150px;
 	  background: #bbb;
 	  overflow: hidden;
 	}
@@ -108,7 +108,8 @@ $HTA_array = array_shift($HTA);
 	.verticalChart .singleBar .title {
 	  margin-top: 5px;
 	  text-align: center;
-	  color: #fff;
+	  color: #000;
+	      width: 70px;
 	}
 </style>
 @section('content')
@@ -160,6 +161,7 @@ $HTA_array = array_shift($HTA);
 	                            <span style=" display: inline;">{{  $HTA_array['Execcutive']['Execcutive'] }}</span>
 	                          </div>
 	                        </div>
+	                        <div class="title">Staff</div>
 	                      </div>
 
 	                      <div class="singleBar">
@@ -168,11 +170,12 @@ $HTA_array = array_shift($HTA);
 	                            <span style=" display: inline;">{{  $HTA_array['staff']['staff'] }}</span>
 	                          </div>
 	                        </div>
+	                        <div class="title">Executive</div>
 	                      </div>
 	                      <div class="clearfix"></div>
 
 	                    </div>
-					
+						<br>
 	              </div>
 	            </div>
 
