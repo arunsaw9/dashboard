@@ -38,6 +38,10 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css')}}">
 
+    @section('headSection')
+
+    @show
+
     <style>
         @font-face {
             font-family: feather;
@@ -47,3 +51,4 @@
                 url("{{ asset('app-assets/fonts/feather/fonts/feather.ttf') }}") format("truetype"), url("{{ asset('app-assets/fonts/feather/fonts/feather.svg') }}") format("svg");
         }
     </style>
+

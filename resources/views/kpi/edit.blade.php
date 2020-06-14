@@ -111,13 +111,13 @@
     <?php if ($editkpis->name == 'Regular Workforce') { ?>
       <div id="inputFormRow">
           <div class="input-group " style="margin: 10px 0;">
-              <input type="text" name="rwf_officers_actual" class="form-control m-input" value="{{ $editkpis['officers']['actual'] }}" placeholder="officers" autocomplete="off">
+              <input type="text" name="rwf_officers_actual" class="form-control m-input" value="{{ $editkpis['Officers']['actual'] }}" placeholder="officers" autocomplete="off">
           </div>
           <div class="input-group " style="margin: 10px 0;">
-              <input type="text" name="rwf_staff_actual" class="form-control m-input" value="{{ $editkpis['staff']['actual']  }}" placeholder="staff" autocomplete="off">
+              <input type="text" name="rwf_staff_actual" class="form-control m-input" value="{{ $editkpis['Staff']['actual']  }}" placeholder="staff" autocomplete="off">
           </div>
           <div class="input-group " style="margin: 10px 0;">
-              <input type="text" name="rwf_contractors_actual" class="form-control m-input" value="{{ $editkpis->contractors['actual']  }}" placeholder="contractors" autocomplete="off">
+              <input type="text" name="rwf_contractors_actual" class="form-control m-input" value="{{ $editkpis->Contractors['actual']  }}" placeholder="contractors" autocomplete="off">
           </div>
       </div>
     <?php } else if($editkpis->name == 'Hiring Target Achievement') { ?>

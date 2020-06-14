@@ -40,7 +40,9 @@
                           @foreach($lists as $list)
                           <tr>
                             <td>{{ $loop->index + 1 }}</td>
-                            <td><i class="fa fa-circle font-small-3 text-success mr-50"></i>{{$list->name}}</td>
+                            <td><a href="{{ route('kpis.show',$list->_id) }}">
+                              <i class="fa fa-circle font-small-3 text-success mr-50"></i>{{$list->name}}</a>
+                            </td>
                             <td>{{ $list->month }}</td>
                             <td>{{ $list->year }}</td>
                             <td><a href="{{ route('kpis.edit',$list->_id) }}" class="btn btn-outline-primary mr-1"><i class="ficon feather icon-edit-2"></i></a></td>

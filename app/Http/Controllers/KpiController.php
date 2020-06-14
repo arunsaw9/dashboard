@@ -71,14 +71,14 @@ class KpiController extends Controller
                 ]
             );
 
-            $save->officers =  [
+            $save->Officers =  [
                 'actual' => $request->rwf_officers_actual,
                 //'planned' => $request->rwf_officers_planned
             ];
-            $save->staff =  [
+            $save->Staff =  [
                 'actual'=>$request->rwf_staff_actual
             ];
-            $save->contractors =  [
+            $save->Contractors =  [
                 'actual' => $request->rwf_contractors_actual
             ];
         }
@@ -163,7 +163,8 @@ class KpiController extends Controller
      */
     public function show($id)
     {
-        //
+        $single = Kpi::find($id);
+        return view('kpi.single', compact('single'));
     }
 
     /**
@@ -217,14 +218,14 @@ class KpiController extends Controller
                 ]
             );
 
-            $editeddata->officers =  [
+            $editeddata->Officers =  [
                 'actual' => $request->rwf_officers_actual,
                 //'planned' => $request->rwf_officers_planned
             ];
-            $editeddata->staff =  [
+            $editeddata->Staff =  [
                 'actual'=>$request->rwf_staff_actual
             ];
-            $editeddata->contractors =  [
+            $editeddata->Contractors =  [
                 'actual' => $request->rwf_contractors_actual
             ];
         }
@@ -243,8 +244,8 @@ class KpiController extends Controller
                ]
            );
 
-            $editeddata->HTA_Execcutive = ['Execcutive' => $request->HTA_Execcutive];
-            $editeddata->HTA_staff = ['staff' => $request->HTA_staff];
+            $editeddata->Execcutive = ['Execcutive' => $request->HTA_Execcutive];
+            $editeddata->staff = ['staff' => $request->HTA_staff];
         }
 
         if($request->name == 'CSR Target Achievement'){
