@@ -1,4 +1,6 @@
 <?php 
+//echo "<pre>"; print_r($CSR); die;
+
 
 $rw_data_array = [];
 $totalvalue = 0;
@@ -133,38 +135,67 @@ $HTA_array = array_shift($HTA);
                         <p style="color: red">73.4% of manpower</p>
                         <br>
                         <span>Tenure Based              631</span>
-                    <span>Term Based 	               15</span>
-                    <span>Contract Workers      21106</span>
-                    <span>Casual/Contingent    240</span>
+	                    <span>Term Based 	               15</span>
+	                    <span>Contract Workers      21106</span>
+	                    <span>Casual/Contingent    240</span>
+	                    <br>
                     </div>
                     
                   </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6 col-12">
+                <div class="col-lg-4 col-md-6 col-12">
                   <div class="card">
                     <div class="card-header d-flex flex-column align-items-start pb-0">
-                        
-                        <h4 class="text-bold-700 mt-1 mb-25">Hiring Target Achievement</h4>
-                        <p class="mb-0">Subscribers Gained</p>
+                        <h4 class="text-bold-700 mt-1 mb-25">{{ $CSR[0]['name'] }}</h4>
                     </div>
-                    <p></p>
+
+                    <div class="card">
+                      <div class="card-header d-flex flex-column align-items-start pb-0">
+                          <div class="card-content">
+                          		<div class="row" style="margin: 0 4px;   border: 1px solid #000;">
+  			                          <div class="col-lg-4 col-md-6 col-12">
+  			                              <div id="columnchart_values" style="border-right: 81px solid #000;"></div>
+  			                          </div>
+  			                          <div class="col-lg-6 col-md-6 col-12" style="margin-left: 30px;">
+  										<div style="margin-top: 40px;">
+  											<strong>Bad</strong>
+  											<h1 style="color: #2C3E50;font-weight: bold;">{{ $CSR[0]['CSR_achievement_target']['target'] }}%</h1>
+  											<p>Target Achieved</p>
+  										</div>
+  			                          </div>
+                          		</div>
+                          </div>
+                      </div>
+                    </div>
+
                   </div>
                 </div>
                 
-                <div class="col-lg-3 col-md-6 col-12">
+                <div class="col-lg-2 col-md-6 col-12">
                   <div class="card">
                     <div class="card-header d-flex flex-column align-items-start pb-0">
-                        <div class="avatar bg-rgba-primary p-50 m-0">
-                            <div class="avatar-content">
-                                <i class="feather icon-users text-primary font-medium-5"></i>
+                        
+                        <h4 class="text-bold-700 mt-1 mb-25">NAPS Target</h4>
+                        <br>
+                        <div class="verticalChart">
+
+                          <div class="singleBar" style="margin-left: 0;">
+                            <div class="napsbar" >
+                              <div class="value" >
+                                <span style=" display: inline;"></span>
+                              </div>
                             </div>
+                            <div class="apprentices">Apprentices</div>
+                            <br>
+                          </div>
+
+                          <div class="singleBar" style="margin-top: 35px;margin-left: 0;">
+                            <div class="napstitle">38%</div>
+                          </div>
+                          <div class="clearfix"></div>
+
                         </div>
-                        <h2 class="text-bold-700 mt-1 mb-25">92.6k</h2>
-                        <p class="mb-0">Subscribers Gained</p>
-                    </div>
-                    <div class="card-content">
-                        <div id="subscribe-gain-chart"></div>
                     </div>
                   </div>
                 </div>
@@ -253,4 +284,39 @@ $HTA_array = array_shift($HTA);
         chart.draw(data, options);
       }
 </script>
+
+<script type="text/javascript">
+  google.charts.load("current", {packages:['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+
+    var data = google.visualization.arrayToDataTable([
+      ["Element", " ", { role: "style" } ],
+      ["", 2, "#E74C3C"],
+    ]);
+
+    var view = new google.visualization.DataView(data);
+    view.setColumns([0, 1,
+                     { calc: "stringify",
+                       sourceColumn: 1,
+                       type: "string",
+                       role: "annotation" },
+                     2]);
+
+    var options = {
+      title: "",
+      width: 80,
+      height: 200,
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+      tooltip : {
+        trigger: 'none'
+      }
+    };
+    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+    chart.draw(view, options);
+}
+</script>
+
+
 @endsection

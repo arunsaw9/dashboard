@@ -11,7 +11,9 @@ class DashboardController extends Controller
 
 		    $RW = Kpi::where('name', 'Regular Workforce')->get();
 		    $HTA = Kpi::where('name', 'Hiring Target Achievement')->get();
+		     $CSR = Kpi::where('name', 'CSR Target Achievement')->get();
+		     $CSR = json_decode($CSR, true);
 		    $Retirements = Kpi::where('Retirements', 148)->get();
-		    return view('kpi.index', compact('RW', 'Retirements', 'HTA'));
+		    return view('kpi.index', compact('RW', 'Retirements', 'HTA', 'CSR'));
 	}
 }

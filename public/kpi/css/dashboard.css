@@ -79,3 +79,31 @@
 		  color: #000;
 		      width: 70px;
 		}
+
+
+	/*==========================NAPS bar chart =========================================*/
+
+	.napsbar {
+	    position: relative;
+	    height: 95px;
+	    background: #34495E;
+	    overflow: hidden;
+	    width: 30px;
+	}
+	.verticalChart .singleBar .napstitle{
+		text-align: center;
+		    color: red;
+		    width: 70px;
+	}
+
+	.verticalChart .singleBar .apprentices {
+	    margin-top: 5px;
+	    text-align: center;
+	    color: #000;
+	    width: 88px;
+	}
+	.value{
+		height: 10%;
+	    background: #F01B05;
+	    margin-top: 50px;
+	}
