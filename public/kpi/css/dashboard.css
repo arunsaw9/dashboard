@@ -41,44 +41,44 @@
 
 	/*========================== bar chart =========================================*/
 
-		.verticalChart {
-		  width: 100%;
-		}
-		.verticalChart .singleBar {
-		  width: 26%;
-		  float: left;
-		  margin-left: 15.5%;
-		}
-		.verticalChart .singleBar .bar {
-		  position: relative;
-		  height: 150px;
-		  background: #bbb;
-		  overflow: hidden;
-		}
-		.verticalChart .singleBar .bar .value {
-		  position: absolute;
-		  bottom: 0;
-		  width: 60%;
-	      margin-left: 18%;
-		  background: #1C2833;
-		  color: #ffffff;
-		}
-		.verticalChart .singleBar .bar .value span {
-		  position: absolute;
-		  font-size: 12px;
-		  bottom: 0;
-		  width: 100%;
-		  height: 20px;
-		  color: #ffffff;
-		  display: none;
-		  text-align: center;
-		}
-		.verticalChart .singleBar .title {
-		  margin-top: 5px;
-		  text-align: center;
-		  color: #000;
-		      width: 70px;
-		}
+	.verticalChart {
+	  width: 100%;
+	}
+	.verticalChart .singleBar {
+	  width: 26%;
+	  float: left;
+	  margin-left: 15.5%;
+	}
+	.verticalChart .singleBar .bar {
+	  position: relative;
+	  height: 150px;
+	  background: #bbb;
+	  overflow: hidden;
+	}
+	.verticalChart .singleBar .bar .value {
+	  position: absolute;
+	  bottom: 0;
+	  width: 60%;
+      margin-left: 18%;
+	  background: #1C2833;
+	  color: #ffffff;
+	}
+	.verticalChart .singleBar .bar .value span {
+	  position: absolute;
+	  font-size: 12px;
+	  bottom: 0;
+	  width: 100%;
+	  height: 20px;
+	  color: #ffffff;
+	  display: none;
+	  text-align: center;
+	}
+	.verticalChart .singleBar .title {
+	  margin-top: 5px;
+	  text-align: center;
+	  color: #000;
+	      width: 70px;
+	}
 
 	/*==========================NAPS bar chart =========================================*/
 
@@ -113,4 +113,10 @@
         height: 247px;
         margin: 0;
         padding: 0;
-      }
+     }
+
+    .ret{
+    	    border: 1px solid #ABEBC6;
+    	    padding: 16px 0;
+    }
+    .card strong{font-size: 12px;}

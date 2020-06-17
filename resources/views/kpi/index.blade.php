@@ -1,56 +1,8 @@
-<?php 
-//---------------------------- RW -----------------------------------
-$rw_data_array = [];
-$totalvalue = 0;
-
-foreach ($RW->toArray() as $key => $value) {
-    foreach ($value as $innerKey => $innerValue) {
-    	if ($innerKey == 'Officers' OR $innerKey == 'Staff' OR $innerKey == 'Contractors') {
-    		foreach ($innerValue as $datakey => $datavalue) {
-    			$rw_data_array[$innerKey] = $datavalue;
-    			$totalvalue += $datavalue;
-
-    		}
-    	}
-    }
-}
-
-//----------------------- Retirements -------------------------------------
-$RetirementsData =json_decode($Retirements);
-$removedArray = array_shift($RetirementsData);
-$arrayData = json_decode(json_encode($removedArray), true);
-unset($arrayData["_id"]);
-
-//------------------------ HTA -------------------------------------
-$HTA = $HTA->toArray();
-$HTA_array = array_shift($HTA);
-
-//-------------------------- Training -----------------------------------
-
-
-//echo '<pre>'; print_r($Training->toArray()); 
-$Training = $Training->toArray();
-
-//echo $Training[0]['TraningDays']['actual'];
-$TraningDays = "['Traning Days','".$Training[0]['TraningDays']['actual']."', ".$Training[0]['TraningDays']['target']."],";
-$Participents = "['Participents','".$Training[0]['Participants']['actual']."', ".$Training[0]['Participants']['target']."],";
-
-//-------------------------Secondary_Workforce--------------------
-
-?>
 
 @extends('layouts.myapp')
 
 @section('headSection')
 	<link rel="stylesheet" type="text/css" href="{{ asset('kpi/css/dashboard.css')}}">
-	  <style type="text/css">
-
-	      .ret{
-	      	    border: 1px solid #ABEBC6;
-	      	    padding: 16px 0;
-	      }
-	    
-	</style>
 @endsection
 
 @section('content')
@@ -100,8 +52,6 @@ $Participents = "['Participents','".$Training[0]['Participants']['actual']."', "
 	      	</div>
 
 	        <div class="row">
-	            
-
 	            <div class="col-lg-3 col-md-6 col-12">
 	            	<div class="ret">
 	            		@foreach($arrayData as $innerkey => $innervalue)
@@ -115,7 +65,7 @@ $Participents = "['Participents','".$Training[0]['Participants']['actual']."', "
 	            </div>
 
 	            <div class="col-lg-3 col-md-6 col-12">
-	              <div class="card">
+	              	<div class="card">
 	                    
 	                    <h4 class="text-bold-700 mt-1 mb-25" style="margin-left: 15%;" >Hiring Target Achievement</h4>
 	                    <div class="verticalChart">
@@ -141,17 +91,15 @@ $Participents = "['Participents','".$Training[0]['Participants']['actual']."', "
 
 	                    </div>
 						<br>
-	              </div>
+	              	</div>
 	            </div>
-
-	            
 
 	            <div class="col-lg-3 col-md-6 col-12">
 	              <div class="card">
 	                  <div class="card-header d-flex flex-column align-items-start pb-0">
-	                      <h4 class="text-bold-700 mt-1 mb-25">MoU Target</h4>
-	                      <p class="mb-0">PAR Completion: <span style="color: red">78%</span></p>
-	                      <p class="mb-0">Training in CoE: <span style="color: red">68%</span></p>
+	                      <h4 class="text-bold-700 mt-1 mb-25">{{ $MoU[0]['name']}}</h4>
+	                      <p class="mb-0">PAR Completion: <span style="color: red">{{ $MoU[0]['PAR Completion']}}</span></p>
+	                      <p class="mb-0">Training in CoE: <span style="color: red">{{ $MoU[0]['Training in CoE']}}</span></p>
 	                      <br>
 	                      <strong class="otherp">Other Parameters</strong>
 	                  </div>
@@ -173,8 +121,8 @@ $Participents = "['Participents','".$Training[0]['Participants']['actual']."', "
 	                  </div>
 	                  
 	                  <div class="card-header d-flex flex-column align-items-start pb-0">
-	                      <h4 class="text-bold-700 mt-1 mb-25">HR Scorecard</h4>
-	                      <strong class="otherp">Other Parameters</strong>
+	                      {{-- <h4 class="text-bold-700 mt-1 mb-25">HR Scorecard</h4>
+	                      <strong class="otherp">Other Parameters</strong> --}}
 	                      <br>
 	                  </div>
 	              </div>
@@ -191,10 +139,10 @@ $Participents = "['Participents','".$Training[0]['Participants']['actual']."', "
                         <h2 class="text-bold-700 mt-1 mb-25">22386</h2>
                         <p style="color: red">73.4% of manpower</p>
                         <br>
-                        <span>Tenure Based          {{$Secondary_Workforce[0]['Tenure Based ']}}</span>
-	                    <span>Term Based 	        {{$Secondary_Workforce[0]['Term Based  ']}}</span>
-	                    <span>Contract Workers      {{$Secondary_Workforce[0]['Contract Workers']}}</span>
-	                    <span>Casual/Contingent     {{$Secondary_Workforce[0]['Casual/Contingent']}}</span>
+                        <span><strong>Tenure Based</strong>          &nbsp;{{$Secondary_Workforce[0]['Tenure Based ']}}</span>
+	                    <span><strong>Term Based</strong> 	        &nbsp;{{$Secondary_Workforce[0]['Term Based  ']}}</span>
+	                    <span><strong>Contract Workers</strong>      &nbsp;{{$Secondary_Workforce[0]['Contract Workers']}}</span>
+	                    <span><strong>Casual/Contingent</strong>     &nbsp;{{$Secondary_Workforce[0]['Casual/Contingent']}}</span>
 	                    <br>
                     </div>
                     
@@ -204,10 +152,10 @@ $Participents = "['Participents','".$Training[0]['Participants']['actual']."', "
                 <div class="col-lg-4 col-md-6 col-12">
                   <div class="card">
                     <div class="card-header d-flex flex-column align-items-start pb-0">
-                        <h4 class="text-bold-700 mt-1 mb-25">{{ $CSR[0]['name'] }}</h4>
+                        <h4 class="text-bold-700 ">{{ $CSR[0]['name'] }}</h4>
                     </div>
 
-                    <div class="card">
+                    <div class="card" style="    margin-bottom: 1.2rem;">
                       <div class="card-header d-flex flex-column align-items-start pb-0">
                           <div class="card-content">
                           		<div class="row" style="margin: 0 4px;   border: 1px solid #000;">
@@ -263,21 +211,21 @@ $Participents = "['Participents','".$Training[0]['Participants']['actual']."', "
                           <div class="avatar bg-rgba-warning p-50 m-0">
                               <div class="avatar-content">
                                   <i class="feather icon-package text-warning font-medium-5"></i>
+
                               </div>
                           </div>
-                          <h2 class="text-bold-700 mt-1 mb-25">97.5K</h2>
-                          <p class="mb-0">Orders Received</p>
+                          <h4 class="text-bold-700 mt-1 mb-25">Medical</h4>
+                          <h2 class="text-bold-700 mt-1 mb-25">Rs.395 <span style="font-size: 12px; color: red;">(in crores)  </span></h2>
+                          <br>
+                          <div class="card-content">
+                      	<img src="{{ asset('app-assets/images/banner/medical.PNG') }}" alt="" style="height: 45px;width: 194px;">
                       </div>
-                      <div class="card-content">
-                          <div id="orders-received-chart"></div>
                       </div>
+                      <br>
                   </div>
                 </div>
 
             </div>
-
-            
-	        
 	       
 	      </section>
 	      <!-- Dashboard Analytics end -->
@@ -294,27 +242,25 @@ $Participents = "['Participents','".$Training[0]['Participants']['actual']."', "
 <script src="{{ asset('app-assets/js/scripts/charts/chart-apex.min.js')}}"></script>
 <script src="{{ asset('app-assets/js/scripts/charts/loader.js')}}"></script>
 
-
 <script src="{{ asset('anychart/anychart-base.min.js')}}"></script>
 <script src="{{ asset('anychart/anychart-cartesian-3d.min.js')}}"></script>
 
 <script type="text/javascript">
 
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
+  	google.charts.load("current", {packages:["corechart"]});
+  	google.charts.setOnLoadCallback(drawChart);
+  	function drawChart() {
         
         var data = google.visualization.arrayToDataTable([
-              ['Language', 'Rating'],
-              <?php
+            ['Language', 'Rating'],
+            <?php
 	              if(is_array($rw_data_array)){
 	              	foreach ($rw_data_array as $key => $value) {
 	              		echo "['".$key."', ".$value."],";
 	              	}
 	              }
-              ?>
-            ]);
-
+            ?>
+           ]);
 
         var options = {
           title: 'My Daily Activities',
@@ -344,7 +290,7 @@ $Participents = "['Participents','".$Training[0]['Participants']['actual']."', "
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
         chart.draw(data, options);
-      }
+    }
 </script>
 
 <script type="text/javascript">
@@ -380,23 +326,19 @@ $Participents = "['Participents','".$Training[0]['Participants']['actual']."', "
 }
 </script>
 
-
-  <script>
-
-      anychart.onDocumentReady(function () {
+<script>
+     anychart.onDocumentReady(function () {
         var dataSet = anychart.data.set([
-        	<?php echo $TraningDays;  ?>
+        	<?php
+        	$TraningDays = "['Traning Days','".$Training[0]['TraningDays']['actual']."', ".$Training[0]['TraningDays']['target']."],";
+			$Participents = "['Participents','".$Training[0]['Participants']['actual']."', ".$Training[0]['Participants']['target']."],";
+        	 echo $TraningDays;  ?>
         	<?php echo  $Participents ?>
-          ['Programmers', 33, 100],
+          	['Programmers', 33, 100],
         ]);
 
         
-
-
-        // map data for the first series, take x from the zero column and value from the first column of data set
         var firstSeriesData = dataSet.mapAs({ x: 0, value: 1 });
-
-        // map data for the second series, take x from the zero column and value from the second column of data set
         var secondSeriesData = dataSet.mapAs({ x: 0, value: 2 });
 
         // create bar chart
@@ -431,8 +373,6 @@ $Participents = "['Participents','".$Training[0]['Participants']['actual']."', "
         // temp variable to store series instance
         var series;
 
-
-
         // create first series with mapped data
         series = chart.bar(firstSeriesData);
         setupSeriesLabels(series, 'Planned');
@@ -440,8 +380,6 @@ $Participents = "['Participents','".$Training[0]['Participants']['actual']."', "
         // create second series with mapped data
         series = chart.bar(secondSeriesData);
         setupSeriesLabels(series, 'Actual');
-
-
 
 		// series.stroke({
 		//   keys: ['.1 red', '.5 blue', '.9 green'],
@@ -454,15 +392,10 @@ $Participents = "['Participents','".$Training[0]['Participants']['actual']."', "
         chart.interactivity().hoverMode('by-x');
 
         chart.tooltip().displayMode('union').valuePrefix('');
-
-        // set container id for the chart
         chart.container('container');
-
-        // initiate chart drawing
         chart.draw();
-      });
+    });
     
 </script>
-
 
 @endsection
