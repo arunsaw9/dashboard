@@ -1,13 +1,13 @@
 	/*=============================chart css======================================*/
-	#donut-chart {
-	  max-width: 300px;
-	  margin: 200px auto;
+	.donut-wrapper {
+		    margin-left: 63px;
+    border: 1px solid orange;
 	}
 
 	.inner-content {
 	  position: absolute;
-	  top: 53%;
-	  left: 50%;
+	  top: 50%;
+	  left: 64%;
 	  width: 100px;
 	  height: 100px;
 	  margin-top: -50px;
@@ -80,7 +80,6 @@
 		      width: 70px;
 		}
 
-
 	/*==========================NAPS bar chart =========================================*/
 
 	.napsbar {
@@ -107,3 +106,11 @@
 	    background: #F01B05;
 	    margin-top: 50px;
 	}
+
+	/*================= Anychart ====================*/
+	#container {
+        width: 100%;
+        height: 247px;
+        margin: 0;
+        padding: 0;
+      }
