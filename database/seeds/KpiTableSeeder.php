@@ -16,13 +16,13 @@ class KpiTableSeeder extends Seeder
 	                'name' => "Regular Workforce",
 	                "month" => 'Jan',
 	                "year" => "2021",
-	                "officers"=>[
+	                "Officers"=>[
 	                	"actual"=> 110
 	                ],
-	                "staff"=>[
+	                "Staff"=>[
 	                	"actual"=>120
 	                ],
-	                "contractors"=>[
+	                "Contractors"=>[
 	                	"actual"=>200
 	                ],
 	            ]	            
@@ -39,8 +39,12 @@ class KpiTableSeeder extends Seeder
 	            	"name"=>'Hiring Target Achievement',
 	            	"month"=>'May',
 	            	"year"=> 2020,
-	            	"Execcutive"=> 200,
-	            	"staff"=>100
+	            	"Execcutive"=> [
+	            		'Execcutive'=>40
+	            	],
+	            	"staff"=> [
+	            		"staff"=>100
+	            	],
 	            ]);
 
 	        kpi::create([
@@ -55,8 +59,8 @@ class KpiTableSeeder extends Seeder
 	            	"name"=>'Secondary Workforce',
 	            	"month"=>'June',
 	            	"year"=> 2020,
-	            	"Tenure Based "=> 631,
-	            	"Term Based  "=> 15	,
+	            	"Tenure Based"=> 631,
+	            	"Term Based"=> 15	,
 	            	"Contract Workers"=>21106,
 	            	"Casual/Contingent"=>240
 	            ]);
@@ -65,9 +69,11 @@ class KpiTableSeeder extends Seeder
 	            	"name"=>'CSR Target Achievement',
 	            	"month"=>'June',
 	            	"year"=> 2020,
-	            	"achievement "=> [
+	            	"CSR_achievement_actual"=> [
 	            		"actual"=>85,
-	            		"target"=>100
+	            	],
+	            	"CSR_achievement_target" => [
+	            		"target"=>85,
 	            	]
 	            ]);
 
@@ -85,11 +91,11 @@ class KpiTableSeeder extends Seeder
 	            	"name"=>'Training',
 	            	"month"=>'June',
 	            	"year"=> 2020,
-	            	"traning days "=> [
+	            	"TraningDays"=> [
 	            		"actual"=>45,
 	            		"target"=>100
 	            	],
-	            	"participants"=> [
+	            	"Participants"=> [
 	            		"actual"=>75,
 	            		"target"=>100
 	            	]

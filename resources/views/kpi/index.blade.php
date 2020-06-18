@@ -24,10 +24,10 @@
 	      	            <div class="card-body">
 	      	                <div class="row pb-50">
 	      		              <div class="card" style="">
-	      						<h4 style="text-align: center;margin: 0 0 10px 44px;">{{ $RW[0]['name'] }}</h4>
+	      						<h4 style="text-align: center;margin: 0 0 10px 44px;">{{ $rw_array[0][0]['name'] }}</h4>
 	      						<div class="donut-wrapper">
 	      							<div id="donutchart" style=" padding-left: 10px;"></div>
-	      							<div class="inner-content">{{ $totalvalue}}</div>
+	      							<div class="inner-content">{{ $rw_array[2] }}</div>
 	      					    </div>
 	      		              </div>
 	      	                </div>
@@ -54,7 +54,7 @@
 	        <div class="row">
 	            <div class="col-lg-3 col-md-6 col-12">
 	            	<div class="ret">
-	            		@foreach($arrayData as $innerkey => $innervalue)
+	            		@foreach($Retirements_array as $innerkey => $innervalue)
 	            			<div class="card cardbox" style="width: 67%;margin: 0 0 0 30px;">
 				              	<div class="box1">{{ $innerkey }} <br>
 									<strong>{{ $innervalue }}</strong>
@@ -136,11 +136,11 @@
                   <div class="card">
                     <div class="card-header d-flex flex-column align-items-start pb-0">
                         <h4 class="text-bold-700 mt-1 mb-25"> {{$Secondary_Workforce[0]['name']}} </h4>
-                        <h2 class="text-bold-700 mt-1 mb-25">22386</h2>
-                        <p style="color: red">73.4% of manpower</p>
+                        <h2 class="text-bold-700 mt-1 mb-25">{{ $Secondary_Workforce_total }}</h2>
+                        <p style="color: red">{{ $Secondary_Regular }}% of manpower</p>
                         <br>
-                        <span><strong>Tenure Based</strong>          &nbsp;{{$Secondary_Workforce[0]['Tenure Based ']}}</span>
-	                    <span><strong>Term Based</strong> 	        &nbsp;{{$Secondary_Workforce[0]['Term Based  ']}}</span>
+                        <span><strong>Tenure Based</strong>          &nbsp;{{$Secondary_Workforce[0]['Tenure Based']}}</span>
+	                    <span><strong>Term Based</strong> 	        &nbsp;{{$Secondary_Workforce[0]['Term Based']}}</span>
 	                    <span><strong>Contract Workers</strong>      &nbsp;{{$Secondary_Workforce[0]['Contract Workers']}}</span>
 	                    <span><strong>Casual/Contingent</strong>     &nbsp;{{$Secondary_Workforce[0]['Casual/Contingent']}}</span>
 	                    <br>
@@ -254,8 +254,8 @@
         var data = google.visualization.arrayToDataTable([
             ['Language', 'Rating'],
             <?php
-	              if(is_array($rw_data_array)){
-	              	foreach ($rw_data_array as $key => $value) {
+	              if(is_array($rw_array[1])){
+	              	foreach ($rw_array[1] as $key => $value) {
 	              		echo "['".$key."', ".$value."],";
 	              	}
 	              }

@@ -21,13 +21,13 @@
 
           <li class=" nav-item"><a href="#"><i class="feather icon-arrow-down-circle"></i><span class="menu-title" data-i18n="Ecommerce">Menu</span></a>
             <ul class="menu-content">
-              <li><a href="app-ecommerce-shop.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">ER</span></a>
+              <li><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">ER</span></a>
               </li>
-              <li><a href="app-ecommerce-details.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Details">HRD</span></a>
+              <li><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Details">HRD</span></a>
               </li>
-              <li><a href="app-ecommerce-wishlist.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Wish List">ONGC</span></a>
+              <li><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Wish List">ONGC</span></a>
               </li>
-              <li><a href="app-ecommerce-checkout.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Checkout">CSR</span></a>
+              <li><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Checkout">CSR</span></a>
 
               <li><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Checkout">SDC</span></a> </li>
               <li><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Checkout">HCA</span></a> </li>
